@@ -11,14 +11,12 @@ public class Library {
         books.add(book);
     }
 
-    // Поиск по автору
     public List<Book> searchByAuthor(String authorName) {
         return books.stream()
                 .filter(book -> book.getAuthor().getName().equalsIgnoreCase(authorName))
                 .collect(Collectors.toList());
     }
-
-    // Фильтрация по году
+    
     public List<Book> filterByYear(int year) {
         return books.stream()
                 .filter(book -> book.getYear() == year)
