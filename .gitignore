@@ -1,0 +1,21 @@
+# Временные файлы Java
+*.class
+*.jar
+*.war
+*.ear
+
+# IDE файлы
+.idea/
+*.iml
+.vscode/
+
+# Логи и временные файлы
+*.log
+target/
+build/
+tmp/
+temp/
+
+# ОС-специфичные
+.DS_Store
+Thumbs.db
