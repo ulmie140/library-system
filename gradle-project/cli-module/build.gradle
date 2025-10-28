@@ -1,0 +1,33 @@
+
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+dependencies {
+    implementation project(':core-module')
+    implementation 'org.apache.commons:commons-lang3:3.13.0'
+}
+
+shadowJar {
+    archiveClassifier = ''
+    manifest {
+        attributes 'Main-Class': 'by.gstu.library.cli.Main'
+    }
+    exclude 'META-INF/*.SF'
+    exclude 'META-INF/*.DSA'
+    exclude 'META-INF/*.RSA'
+    mergeServiceFiles()
+}
+
+tasks.named('build') {
+    dependsOn shadowJar
+    finalizedBy createZip
+}
+
+tasks.register('createZip', Zip) {
+    from shadowJar
+    from project(':core-module').jar
+    archiveFileName = 'library-system-dist.zip'
+    destinationDirectory = layout.buildDirectory.dir('distributions')
+}
